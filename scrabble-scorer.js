@@ -41,7 +41,6 @@ let simpleLetters = {
    1: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 }
 
-const sumValues = obj => Object.values(obj).reduce((a, b) => a + b, 0);
 
 function simpleScorer(word) {
 	word = word.toUpperCase();
@@ -91,39 +90,22 @@ function scrabbleScorer(word) {
 	return letterPoints;
  };
 
-// let simpleScorerObject = {
-//    name: '0) Simple Scorer',
-//    description: 'Each letter is worth 1 point.',
-//    scoringFunction: simpleScorer
-//   }
-  
-// let vowelBonusScorerObject = {
-//   name: '1) Vowel Bonus Scorer',
-//   description: 'Vowels are 3 pts, consonants are 1 pt.',
-//   scoringFunction: vowelBonusScorer
-// }
-
-// let scrabbleScorerObject = {
-//   name: '2) Scrabble Scorer',
-//   description: 'The traditional scoring algorithm.',
-//   scoringFunction: scrabbleScorer
-// }
 
 const scoringAlgorithms = [
   {
     name: 'Simple Scorer',
     description: 'Each letter is worth 1 point.',
-    scorerFunction: [Function simpleScorer]
+    scorerFunction: simpleScorer
   },
   {
     name: 'Vowel Bonus Scorer',
     description: 'Vowels are 3 pts, consonants are 1 pt.',
-    scorerFunction: [vowelBonusScorer]
+    scorerFunction: vowelBonusScorer
   },
   {
     name: 'Scrabble Scorer',
     description: 'The traditional scoring algorithm.',
-    scorerFunction: [scrabbleScorer()]
+    scorerFunction: scrabbleScorer
   }
 ];
 
@@ -145,21 +127,59 @@ let word = input.question("Let's play some scrabble! Enter a word: ");
    }
 };
 
-function transform() {};
+let testObject = {
+  name: 'Carl',
+  age: 10
+}
+// objectName["new-key"] = propertyValue;
 
-let newPointStructure;
+function transform(obj) {
+  let newLetterPoints = {};
+  // for (let i = 0; i < obj.length; i++){
+    for (const item in obj) {
+      if (obj[1].includes('A')) {
+        newLetterPoints['a'] = 1;
+  }
+}
+return console.log(newLetterPoints);
+};
+
+
+let newPointStructure = transform(oldPointStructure);
+  // 'a': 1,
+  // 'e': 1,
+  // 'i': 1,
+  // 'o': 1,
+  // 'u': 1,
+  // 'l': 1,
+  // 'n': 1,
+  // 'r': 1,
+  // 's': 1,
+  // 't': 1,
+  // 'd': 2,
+  // 'g': 2,
+  // 'b': 3,
+  // 'c': 3,
+  // 'm': 3,
+  // 'p': 3,
+  // 'f': 4,
+  // 'h': 4,
+  // 'v': 4,
+  // 'w': 4,
+  // 'y': 4,
+  // 'k': 5,
+  // 'j': 8,
+  // 'x': 8,
+  // 'q': 10,
+  // 'z': 10
+
 
 function runProgram() {
   //  initialPrompt();
-   scorerPrompt(scoringAlgorithms);
-     // Simple scoring
-    //  console.log("algorithm name: ", scoringAlgorithms[1].name);
-    //  console.log("scoringFunction result: ", scoringAlgorithms[1].scoringFunction("corno"));
-    // console.log(simpleScorer('Javascript'));
+  //  scorerPrompt(scoringAlgorithms);
+console.log(transform(oldPointStructure));
   
 }
-
-
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
 module.exports = {
