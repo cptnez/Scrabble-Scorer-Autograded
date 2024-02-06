@@ -45,38 +45,34 @@ const sumValues = obj => Object.values(obj).reduce((a, b) => a + b, 0);
 
 function simpleScorer(word) {
 	word = word.toUpperCase();
-	let letterPoints = '';
+	let letterPoints = 0;
   for (let i = 0; i < word.length; i++) {
-    for (const pointValue in simpleLetters) {
-      if (simpleLetters[pointValue].includes(word[i])) {
-        letterPoints = Number(pointValue)
-      }
-    }
+    letterPoints +=1
   }
 	return (letterPoints);
  };
 
- let vowelLetters = {
-   1: ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'],
-   3: ['A', 'E', 'I', 'O', 'U']
-};
 
 function vowelBonusScorer(word) {
 	word = word.toUpperCase();
-	let letterPoints = "";
- 
+  let letterPoints = 0;
 	for (let i = 0; i < word.length; i++) {
- 
-	  for (const pointValue in vowelLetters) {
- 
-		 if (vowelLetters[pointValue].includes(word[i])) {
-			letterPoints += pointValue
-		 }
- 
-	  }
-	}
+    if (word[i] == 'A') {
+      letterPoints += 3;
+    } else if (word[i] == 'E') {
+      letterPoints += 3;
+    } else if (word[i] == 'I') {
+      letterPoints += 3;
+    } else if (word[i] == 'O') {
+      letterPoints += 3;
+    } else if (word[i] == 'U') {
+      letterPoints += 3;
+    } else {
+      letterPoints += 1;
+    }
+}
 	return (letterPoints);
- };
+};
 
 
 function scrabbleScorer(word) {
@@ -95,24 +91,41 @@ function scrabbleScorer(word) {
 	return letterPoints;
  };
 
-let simpleScorerObject = {
-   name: '0) Simple Scorer',
-   description: 'Each letter is worth 1 point.',
-   scoringFunction: simpleScorer
-  }
+// let simpleScorerObject = {
+//    name: '0) Simple Scorer',
+//    description: 'Each letter is worth 1 point.',
+//    scoringFunction: simpleScorer
+//   }
   
-let vowelBonusScorerObject = {
-  name: '1) Vowel Bonus Scorer',
-  description: 'Vowels are 3 pts, consonants are 1 pt.',
-  scoringFunction: vowelBonusScorer
-}
+// let vowelBonusScorerObject = {
+//   name: '1) Vowel Bonus Scorer',
+//   description: 'Vowels are 3 pts, consonants are 1 pt.',
+//   scoringFunction: vowelBonusScorer
+// }
 
-let scrabbleScorerObject = {
-  name: '2) Scrabble Scorer',
-  description: 'The traditional scoring algorithm.',
-  scoringFunction: scrabbleScorer
-}
-const scoringAlgorithms = [simpleScorerObject, vowelBonusScorerObject, scrabbleScorerObject];
+// let scrabbleScorerObject = {
+//   name: '2) Scrabble Scorer',
+//   description: 'The traditional scoring algorithm.',
+//   scoringFunction: scrabbleScorer
+// }
+
+const scoringAlgorithms = [
+  {
+    name: 'Simple Scorer',
+    description: 'Each letter is worth 1 point.',
+    scorerFunction: [Function simpleScorer]
+  },
+  {
+    name: 'Vowel Bonus Scorer',
+    description: 'Vowels are 3 pts, consonants are 1 pt.',
+    scorerFunction: [vowelBonusScorer]
+  },
+  {
+    name: 'Scrabble Scorer',
+    description: 'The traditional scoring algorithm.',
+    scorerFunction: [scrabbleScorer()]
+  }
+];
 
 function scorerPrompt(arr) {
 let word = input.question("Let's play some scrabble! Enter a word: ");
@@ -122,11 +135,11 @@ let word = input.question("Let's play some scrabble! Enter a word: ");
    }
    let scoreChoice = input.question('Enter 0, 1, or 2: ');
    if (scoreChoice == 0) {
-    return console.log(simpleScorer(word));
+    return console.log(`Your word '${word}' received ${simpleScorer(word)} points.`);
    } else if (scoreChoice == 1) {
-    return console.log(vowelBonusScorer(word));
+    return console.log(`Your word '${word}' received ${vowelBonusScorer(word)} points.`);
    } else if (scoreChoice == 2) {
-    return console.log(scrabbleScorer(word));
+    return console.log(`Your word '${word}' received ${scrabbleScorer(word)} points.`);
    } else {
     return input.question('Enter 0, 1, or 2: ');
    }
@@ -138,10 +151,11 @@ let newPointStructure;
 
 function runProgram() {
   //  initialPrompt();
-  //  scorerPrompt(scoringAlgorithms);
+   scorerPrompt(scoringAlgorithms);
      // Simple scoring
-     console.log("algorithm name: ", scoringAlgorithms[0].name);
-     console.log("scoringFunction result: ", scoringAlgorithms[0].scoringFunction("JavaScript"));
+    //  console.log("algorithm name: ", scoringAlgorithms[1].name);
+    //  console.log("scoringFunction result: ", scoringAlgorithms[1].scoringFunction("corno"));
+    // console.log(simpleScorer('Javascript'));
   
 }
 
