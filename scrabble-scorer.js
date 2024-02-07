@@ -152,7 +152,8 @@ return newObj;
 };
 function runProgram() {
   //  initialPrompt();
-  scrabbleScorer('javascript');
+  scorerPrompt(scoringAlgorithms);
+  // scrabbleScorer('javascript');
   // console.log(newPointStructure['q']);
 }
 // Don't write any code below this line //
