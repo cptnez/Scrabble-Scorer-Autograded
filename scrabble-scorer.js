@@ -154,10 +154,28 @@ function transform(oldObj) {
       let pointsEight = oldObj[8];
       let pointsTen = oldObj[10];
 
-      if (pointsTen.includes('A')){// add for loop?
-        newObj['a'] = 1;//convert keys from old
-  }
-}
+      if (pointsOne.includes('A')){// add for loop?
+        newObj['a'] = 1;
+        }
+      if (pointsTwo.includes('D')){
+        newObj['d'] = 2;
+       }
+      if (pointsThree.includes('B')){
+        newObj['b'] = 3;
+       }
+      if (pointsFour.includes('F')){
+        newObj['f'] = 4;
+       }
+       if (pointsFive.includes('K')){
+        newObj['k'] = 5;
+       }
+       if (pointsEight.includes('J')){
+        newObj['j'] = 8;
+       }
+       if (pointsTen.includes('Q')){
+        newObj['q'] = 10;
+       }
+    }
 return newObj;
 };
 
