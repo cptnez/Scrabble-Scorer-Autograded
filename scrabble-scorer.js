@@ -147,14 +147,14 @@ function transform(oldObj) {
     for (const key in oldObj) {
 
       let pointsOne = oldObj[1];
-      let pointsTwo = oldObj[1];
-      let pointsThree = oldObj[2];
-      let pointsFour = oldObj[3];
-      let pointsFive = oldObj[4];
-      let pointsEight = oldObj[5];
-      let pointsTen = oldObj[6];
+      let pointsTwo = oldObj[2];
+      let pointsThree = oldObj[3];
+      let pointsFour = oldObj[4];
+      let pointsFive = oldObj[5];
+      let pointsEight = oldObj[8];
+      let pointsTen = oldObj[10];
 
-      if (pointsOne[0].includes('A')){// add for loop?
+      if (pointsTen.includes('A')){// add for loop?
         newObj['a'] = 1;//convert keys from old
   }
 }
