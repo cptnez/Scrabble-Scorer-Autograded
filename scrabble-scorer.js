@@ -71,12 +71,13 @@ function scrabbleScorer(word) {
   word = word.toLowerCase();
   letterPoints = 0;
    for (let i = 0; i < word.length; i++) {
-    for (const key in newPointStructure) {
-      if (key.includes(word[i])) {
-        letterPoints += newPointStructure[key];
+    for (const letter in newPointStructure) {
+      if (letter == word[i]) {
+        letterPoints += newPointStructure[letter];
       }
     }
   }
+  return letterPoints;
  };
 const scoringAlgorithms = [
   {
