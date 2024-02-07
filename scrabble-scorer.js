@@ -154,9 +154,8 @@ function transform(oldObj) {
       let pointsEight = oldObj[8];
       let pointsTen = oldObj[10];
 
-      if (pointsOne.includes('A')){// add for loop?
-        newObj['a'] = 1;
-        }
+   newObj[pointsOne[0].toLowerCase()] = 1;
+       
       if (pointsTwo.includes('D')){
         newObj['d'] = 2;
        }
@@ -175,7 +174,7 @@ function transform(oldObj) {
        if (pointsTen.includes('Q')){
         newObj['q'] = 10;
        }
-    }
+      }
 return newObj;
 };
 
