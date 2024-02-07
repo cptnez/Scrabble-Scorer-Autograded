@@ -11,7 +11,6 @@ const oldPointStructure = {
   8: ['J', 'X'],
   10: ['Q', 'Z']
 };
-
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = "";
@@ -27,7 +26,6 @@ function oldScrabbleScorer(word) {
 	}
 	return letterPoints;
  }
-
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 let answer;
@@ -36,12 +34,9 @@ function initialPrompt() {
    answer = simpleScorer(response);
    return console.log(answer);
 };
-
 let simpleLetters = {
    1: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 }
-
-
 function simpleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = 0;
@@ -50,8 +45,6 @@ function simpleScorer(word) {
   }
 	return (letterPoints);
  };
-
-
 function vowelBonusScorer(word) {
 	word = word.toUpperCase();
   let letterPoints = 0;
@@ -72,25 +65,19 @@ function vowelBonusScorer(word) {
 }
 	return (letterPoints);
 };
-
+let newPointStructure = (transform(oldPointStructure));
 
 function scrabbleScorer(word) {
-  word = word.toUpperCase();
-	let letterPoints = "";
- 
-	for (let i = 0; i < word.length; i++) {
- 
-	  for (const pointValue in oldPointStructure) {
- 
-		 if (oldPointStructure[pointValue].includes(word[i])) {
-			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
-		 }
-	  }
-	}
-	return letterPoints;
+  word = word.toLowerCase();
+  letterPoints = 0;
+   for (let i = 0; i < word.length; i++) {
+    for (const key in newPointStructure) {
+      if (key.includes(word[i])) {
+        letterPoints += newPointStructure[key];
+      }
+    }
+  }
  };
-
-
 const scoringAlgorithms = [
   {
     name: 'Simple Scorer',
@@ -108,7 +95,6 @@ const scoringAlgorithms = [
     scorerFunction: scrabbleScorer
   }
 ];
-
 function scorerPrompt(arr) {
 let word = input.question("Let's play some scrabble! Enter a word: ");
    console.log('Which scoring system do you want to use?');
@@ -126,21 +112,6 @@ let word = input.question("Let's play some scrabble! Enter a word: ");
     return input.question('Enter 0, 1, or 2: ');
    }
 };
-
-let testObject = {
-  name: 'Carl',
-  age: 10
-}
-// objectName["new-key"] = propertyValue;
-
-
-// function transform(obj){
-//   1. take oldObj and run through each array
-//   2. turn value of each array into a PROPERTY of a NEW object array
-//   3. Assign the property of the old object array to the VALUE in coresponding NEW object array
-// }
-
-
 function transform(oldObj) {
   //New object
   let newObj = {};
@@ -154,65 +125,34 @@ function transform(oldObj) {
       let pointsEight = oldObj[8];
       let pointsTen = oldObj[10];
 
-   newObj[pointsOne[0].toLowerCase()] = 1;
-       
-      if (pointsTwo.includes('D')){
-        newObj['d'] = 2;
-       }
-      if (pointsThree.includes('B')){
-        newObj['b'] = 3;
-       }
-      if (pointsFour.includes('F')){
-        newObj['f'] = 4;
-       }
-       if (pointsFive.includes('K')){
-        newObj['k'] = 5;
-       }
-       if (pointsEight.includes('J')){
-        newObj['j'] = 8;
-       }
-       if (pointsTen.includes('Q')){
-        newObj['q'] = 10;
-       }
+      for (let i = 0; i < pointsOne.length; i++) {
+      newObj[pointsOne[i].toLowerCase()] = 1;
+      }
+      for (let j = 0; j < pointsTwo.length; j++) {
+        newObj[pointsTwo[j].toLowerCase()] = 2;
+        }
+        for (let k = 0; k < pointsThree.length; k++) {
+          newObj[pointsThree[k].toLowerCase()] = 3;
+          }
+          for (let l = 0; l < pointsFour.length; l++) {
+            newObj[pointsFour[l].toLowerCase()] = 4;
+            }
+            for (let m = 0; m < pointsFive.length; m++) {
+              newObj[pointsFive[m].toLowerCase()] = 5;
+              }
+              for (let n = 0; n < pointsEight.length; n++) {
+                newObj[pointsEight[n].toLowerCase()] = 8;
+              }
+                for (let p = 0; p < pointsTen.length; p++) {
+                  newObj[pointsTen[p].toLowerCase()] = 10;
+                  }
       }
 return newObj;
 };
-
-
-let newPointStructure = transform(oldPointStructure);
-  // 'a': 1,
-  // 'e': 1,
-  // 'i': 1,
-  // 'o': 1,
-  // 'u': 1,
-  // 'l': 1,
-  // 'n': 1,
-  // 'r': 1,
-  // 's': 1,
-  // 't': 1,
-  // 'd': 2,
-  // 'g': 2,
-  // 'b': 3,
-  // 'c': 3,
-  // 'm': 3,
-  // 'p': 3,
-  // 'f': 4,
-  // 'h': 4,
-  // 'v': 4,
-  // 'w': 4,
-  // 'y': 4,
-  // 'k': 5,
-  // 'j': 8,
-  // 'x': 8,
-  // 'q': 10,
-  // 'z': 10
-
-
 function runProgram() {
   //  initialPrompt();
-  //  scorerPrompt(scoringAlgorithms);
-console.log(transform(oldPointStructure));
-  
+  scrabbleScorer('javascript');
+  // console.log(newPointStructure['q']);
 }
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
