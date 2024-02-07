@@ -133,15 +133,22 @@ let testObject = {
 }
 // objectName["new-key"] = propertyValue;
 
-function transform(obj) {
-  let newLetterPoints = {};
-  // for (let i = 0; i < obj.length; i++){
-    for (const item in obj) {
-      if (obj[1].includes('A')) {
-        newLetterPoints['a'] = 1;
+
+// function transform(obj){
+//   1. take oldObj and run through each array
+//   2. turn value of each array into a PROPERTY of a NEW object array
+//   3. Assign the property of the old object array to the VALUE in coresponding NEW object array
+// }
+
+
+function transform(oldObj) {
+  //New object
+  let newObj = {};
+    for (const item in oldObj) {
+      oldObj[item].includes()//for loop
+        newObj['a'] = 1;//convert keys from old
   }
-}
-return console.log(newLetterPoints);
+return newObj;
 };
 
 
