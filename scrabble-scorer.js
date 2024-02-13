@@ -34,9 +34,6 @@ function initialPrompt() {
    answer = simpleScorer(response);
    return console.log(answer);
 };
-let simpleLetters = {
-   1: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-}
 function simpleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = 0;
@@ -62,10 +59,10 @@ function vowelBonusScorer(word) {
     } else {
       letterPoints += 1;
     }
-}
+  }
 	return (letterPoints);
 };
-let newPointStructure = (transform(oldPointStructure));
+let newPointStructure = transform(oldPointStructure);
 
 function scrabbleScorer(word) {
   word = word.toLowerCase();
@@ -114,40 +111,13 @@ let word = input.question("Let's play some scrabble! Enter a word: ");
    }
 };
 function transform(oldObj) {
-  //New object
   let newObj = {};
     for (const key in oldObj) {
-
-      let pointsOne = oldObj[1];
-      let pointsTwo = oldObj[2];
-      let pointsThree = oldObj[3];
-      let pointsFour = oldObj[4];
-      let pointsFive = oldObj[5];
-      let pointsEight = oldObj[8];
-      let pointsTen = oldObj[10];
-
-      for (let i = 0; i < pointsOne.length; i++) {
-      newObj[pointsOne[i].toLowerCase()] = 1;
+        let points = oldObj[key];
+      for (let i = 0; i < points.length; i++) {
+          newObj[points[i].toLowerCase()] = Number(key);
       }
-      for (let j = 0; j < pointsTwo.length; j++) {
-        newObj[pointsTwo[j].toLowerCase()] = 2;
-        }
-        for (let k = 0; k < pointsThree.length; k++) {
-          newObj[pointsThree[k].toLowerCase()] = 3;
-          }
-          for (let l = 0; l < pointsFour.length; l++) {
-            newObj[pointsFour[l].toLowerCase()] = 4;
-            }
-            for (let m = 0; m < pointsFive.length; m++) {
-              newObj[pointsFive[m].toLowerCase()] = 5;
-              }
-              for (let n = 0; n < pointsEight.length; n++) {
-                newObj[pointsEight[n].toLowerCase()] = 8;
-              }
-                for (let p = 0; p < pointsTen.length; p++) {
-                  newObj[pointsTen[p].toLowerCase()] = 10;
-                  }
-      }
+    }
 return newObj;
 };
 function runProgram() {
